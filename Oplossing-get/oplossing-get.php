@@ -1,6 +1,6 @@
 <?php
 //*********************************** DEEL 1 *******************************
-	$artikels =	[	array(	"Titel" => "AYY LMAOO", 
+	$artikels =	[	array(	"Titel" => "lenny", 
 							"Paragraaf" => "( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)( ͡° ͜ʖ ͡°)", 
 							"Afbeelding" => "Lenny_face.png", 
 							"Beschrijving" => "le lenny face"), 
@@ -15,6 +15,26 @@
 						"Afbeelding" => "kappa.png", 
 						"Beschrijving" => "Grey Face no spacerino Kappa")
 				];
+
+    $artikelBool;
+
+    if ( isset ( $_GET['id'] ) )
+    {
+        $id = $_GET['id'];
+
+        $thisArtikel = $artikels[$id];
+
+        // Controleren of de opgevraagde key (=id) bestaat in de array $artikels
+        if ( array_key_exists( $id , $artikels ) )
+        {
+            $artikels           =   array( $artikels[$id] );
+        }   
+
+        $individueelArtikel =   true;
+    }
+    else{
+        $individueelArtikel = false;
+    }
 
 
 
@@ -64,14 +84,30 @@
 
                         <h1>De krant van vandaag</h1>
 
+        <?php if ($individueelArtikel == false): ?>
+
 
 			<?php foreach ( $artikels as $id => $artikel ): ?>
 				<article class="multiple">
 					<h1><?php echo $artikel['Titel'] ?></h1>
 					<img src="./img/<?php echo $artikel['Afbeelding'] ?>" alt="<?php echo $artikel['Beschrijving'] ?>">
 					<p><?php echo str_replace ( "\r\n", "</p><p>", substr( $artikel['Paragraaf'], 0, 50 ) ) . '...' ?></p>
+                    <a href="oplossing-get.php?id=<?php echo $id ?>">Lees meer</a>
 				</article>
 			<?php endforeach ?>
+
+
+        <?php else: ?>
+
+
+            <article class="multiple">
+                    <h1><?php echo $thisArtikel['Titel'] ?></h1>
+                    <img src="./img/<?php echo $thisArtikel['Afbeelding'] ?>">
+                    <p><?php echo str_replace ( "\r\n", "</p><p>", substr( $thisArtikel['Paragraaf'], 0, 50 ) ) . '...' ?></p>
+            </article>
+
+
+        <?php endif ?>
 
     </div>
 
