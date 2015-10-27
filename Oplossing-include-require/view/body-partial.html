@@ -1,0 +1,18 @@
+<body id="zbody" class="">
+
+
+
+<div id="rikulo-container"> 
+
+<?php foreach ( $artikels as $id => $artikel ): ?>
+				<article class="multiple">
+					<h1><?php echo $artikel['Titel'] ?></h1>
+					<p><?php echo str_replace ( "\r\n", "</p><p>", $artikel['Text'] )  ?></p>
+				</article>
+<?php endforeach ?>
+
+</div>  
+
+
+
+</body>
