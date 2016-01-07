@@ -4,7 +4,6 @@
   $replacement = "<span>#</span>";
   //$regex = "[a-d]|[u-z]|" . $_POST["regex"] . "|[color]|[colour]";
   $regex = "[1]\d{3}";
-  $regex =
   if(isset($_POST["submit"])){
     if(isset($_POST["regex"]) && isset($_POST["string"])){
       $newString = preg_replace("/" . $regex . "/", $replacement, $_POST["string"]);

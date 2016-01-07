@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteRule ^bieren/(\S\D*)/(\d*)/?$ index.php?controller=bieren&method=$1&id=$2
+
+RewriteRule ^bieren/(\S\D*)/?$ index.php?controller=bieren&method=$1
