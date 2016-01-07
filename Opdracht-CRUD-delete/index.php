@@ -26,11 +26,9 @@
 
     }
 
-    $queryStringSelect = "SELECT b.biernr, b.naam, b.brouwernr, b.soortnr, b.alcohol, br.brnaam,
-							   br.adres, br.postcode, br.gemeente, br.omzet
-						FROM `bieren`as b
-						JOIN brouwers as br
-						ON(b.brouwernr = br.brouwernr)";
+    $queryStringSelect = "SELECT brouwernr, brnaam,
+        							   adres, postcode, gemeente, omzet
+						             FROM `brouwers`";
 
 		$statementSelect = $db->prepare($queryStringSelect);
 		$statementSelect->execute();
@@ -59,7 +57,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crud Insert</title>
+    <title>Crud Delete</title>
     <style>
 			.success
 			{
@@ -94,7 +92,7 @@
 	   					<?php echo "<td>" . $value2 . "</td>" ?>
 	   				<?php endforeach ?>
             <td>
-              <button type="submit" name="delete" id="delete" value="<?php echo $value["brouwernr"] ?>"></button>
+              <button type="submit" name="delete" id="delete" value="<?php echo $value["brouwernr"] ?>">Delete</button>
             </td>
    				<?php echo "</tr>" ?>
    			<?php endforeach ?>
